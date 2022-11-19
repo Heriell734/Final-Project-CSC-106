@@ -1,0 +1,134 @@
+// Global Variables
+var currentScene = 0; // 0 = Splash screen, 1 = Game screen 
+
+//bitmoji code
+var drawBitmoji = function (x, y, bitmojiHeight) {
+    noStroke ();
+    rectMode(CORNER);
+        ellipseMode(CENTER);
+    fill (222, 154, 109); // skin tone
+    ellipse (x+(bitmojiHeight/150), y+(bitmojiHeight/150), bitmojiHeight/150*86,       bitmojiHeight/150*101); // head
+    fill (13, 12, 12); // black hair
+    ellipse (x+(bitmojiHeight/150), y-(bitmojiHeight/150*37), bitmojiHeight/150*62, bitmojiHeight/150*28); // glasses
+    ellipse (x+(bitmojiHeight/150), y-(bitmojiHeight/150*37), bitmojiHeight/150*62, bitmojiHeight/150*28); // glasses
+    stroke (0, 0, 0); // stroke for glasses 
+    fill (222, 154, 109); // skin tone under the glasses
+    ellipse (x-(bitmojiHeight/150*16), y+(bitmojiHeight/150), bitmojiHeight/150*25,     bitmojiHeight/150*19); // glasses left 
+    ellipse (x+(bitmojiHeight/150*16), y+(bitmojiHeight/150), bitmojiHeight/150*25, bitmojiHeight/150*19); // glasses right
+    line (x+(bitmojiHeight/150*4), y+(bitmojiHeight/150), x-(bitmojiHeight/150*4), y+(bitmojiHeight/150)); // glasses nose bridge
+    line (x-(bitmojiHeight/150*27), y-(bitmojiHeight/150*1), x-(bitmojiHeight/150*44), y-(bitmojiHeight/150*12)); // glasses side left
+    line (x+(bitmojiHeight/150*27), y+(bitmojiHeight/150*1), x+(bitmojiHeight/150*44), y-(bitmojiHeight/150*12)); // glasses side right
+    fill (69,24,0); // eyes color
+    ellipse (x-(bitmojiHeight/150*16), y+(bitmojiHeight/150), bitmojiHeight/150*10, bitmojiHeight/150*12); // left eye
+    ellipse(x+(bitmojiHeight/150*16), y+(bitmojiHeight/150), bitmojiHeight/150*10, bitmojiHeight/150*12); // right eye
+    fill (222, 154, 109); //fill to skin tone
+    bezier(x+(bitmojiHeight/150), y+(bitmojiHeight/150), x+(bitmojiHeight/150*21), y+(bitmojiHeight/150*22), x-(bitmojiHeight/150*8), y+(bitmojiHeight/150*20), x-(bitmojiHeight/150*4), y+(bitmojiHeight/150*15)); // nose
+    fill (255, 255, 255); // white fill for teeth
+    arc(x+(bitmojiHeight/150*3), y+(bitmojiHeight/150*25), bitmojiHeight/150*30, bitmojiHeight/150*13, bitmojiHeight/150*1, bitmojiHeight/150*181); // mouth 
+    line (x-(bitmojiHeight/150*13), y+(bitmojiHeight/150*24), x+(bitmojiHeight/150*19), y+(bitmojiHeight/150*24)); // top of mouth
+    fill (255, 0, 68); // Graduation Gown 
+    quad(x+(bitmojiHeight/150*8), y+(bitmojiHeight/150*116), x-(bitmojiHeight/150*76), y+(bitmojiHeight/150*85), x-(bitmojiHeight/150*51), y+(bitmojiHeight/150*28), x+(bitmojiHeight/150*10), y+(bitmojiHeight/150*64)); // left gown 
+    quad(x+(bitmojiHeight/150*17), y+(bitmojiHeight/150*116), x+(bitmojiHeight/150*101), y+(bitmojiHeight/150*67), x+(bitmojiHeight/150*62), y+(bitmojiHeight/150*28), x+(bitmojiHeight/150*12), y+(bitmojiHeight/150*64)); // right gown 
+    fill (255, 0, 68); //cords
+    rect(x+(bitmojiHeight/150*51), y+(bitmojiHeight/150*30), bitmojiHeight/150*17,bitmojiHeight/150*113, bitmojiHeight/150*37); // left cord
+    rect (x-(bitmojiHeight/150*52), y+(bitmojiHeight/150*33), bitmojiHeight/150*17, bitmojiHeight/150*113, bitmojiHeight/150*37); // right cord
+    fill (255, 0, 68); // cap color
+    quad (x-(bitmojiHeight/150*44), y-(bitmojiHeight/150*32), x+(bitmojiHeight/150*36), y-(bitmojiHeight/150*12), x+(bitmojiHeight/150*55), y-(bitmojiHeight/150*74), x-(bitmojiHeight/150*20), y-(bitmojiHeight/150*91)); // cap 
+    fill (255, 0, 68); // cap circle color
+    ellipse (x+(bitmojiHeight/150*16), y-(bitmojiHeight/150*53), bitmojiHeight/150*23, bitmojiHeight/150*17); // cap circle
+    fill (31, 24, 24); // cap line
+    line (x+(bitmojiHeight/150*29), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 1
+    line (x+(bitmojiHeight/150*33), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 2
+    line (x+(bitmojiHeight/150*37), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 3
+    line (x+(bitmojiHeight/150*24), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 4
+    fill (43, 33, 33); // text
+    textSize(bitmojiHeight/150*30);
+    text("L", x-(bitmojiHeight/150*23), y+(bitmojiHeight/150*90)); 
+    text("G", x+(bitmojiHeight/150*23), y+(bitmojiHeight/150*90)); 
+    };
+    
+//Paste in Khan Button class
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick ||
+function() {};
+};
+
+Button.prototype.draw = function() {
+    fill(234, 242, 3);
+    rect(this.x, this.y, this.width, this.height, 5);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+10, this.y+this.height/4);
+};
+
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+
+// start button 
+var startButton = new Button({
+    x: 160, 
+    y:300, 
+    width:91, 
+    height: 40,
+    label: " START", 
+    onClick: function(){
+        currentScene = 1;
+    }
+});
+
+//Draws Main Screen
+var splashScene = function(){
+    currentScene = 0;
+    background(105, 114, 214);
+    fill(132, 235, 240);
+    textSize(35);
+    text("Asteroid Game", 74, 50);  
+    fill(234, 242, 3);
+    textSize(15); 
+    text("Press the Start button and guides the ship around the screen, shooting bullets at asteroids. When an asteroid is hit, it splits up into smaller asteroids which fly off. When a small asteroid is hit, it disappears from the screen. If an asteroid or bullet hits the player's ship, the player loses the game. Have Fun!", 30, 100, 350, 100);
+    fill(132, 235, 240);
+    textSize(25);
+    text("Laila Ghazi & Heriell Munoz", 50, 370);
+    drawBitmoji(100, 240, 60);
+    startButton.draw();
+};
+
+var gameScene = function() {
+    background(209, 144, 194);
+    fill(255, 255, 255);
+    textSize(27);
+    text("Asteroid Game Instructions", 40, 30);
+};
+
+// mouseClicked function to move from one scene to the other
+mouseClicked = function() {
+    if (currentScene === 0) {
+     startButton.handleMouseClick();
+    }
+};
+
+draw = function() {
+     if (currentScene === 0) {
+         splashScene();
+     }
+     if (currentScene === 1) {
+         gameScene();
+     }
+};
+splashScene();
