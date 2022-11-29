@@ -1,0 +1,46 @@
+var xPositions = [];
+var yPositions = [];
+var NumAst = 50;
+var astColors = color(112, 95, 61);
+var dropSpeed = [];
+var hearts = 3;
+
+  for (var i = 0; i<NumAst; i++)
+  {
+     xPositions.push(round(random(0,400)));
+     yPositions.push(round(random(0,400)));
+     
+    dropSpeed.push(round(random(1,3)));
+  }
+     
+
+    
+     
+draw = function() {
+    background(0, 0, 0);
+
+    noStroke();
+
+    for (var i = 0; i < hearts ; i++) {
+    image(getImage("cute/Heart"),i*50,15,55,57);
+    
+    }
+
+    for (var i = 0; i < xPositions.length; i++) {
+        fill(astColors);
+        ellipse(xPositions[i], yPositions[i], 30, 30);
+        yPositions[i] += dropSpeed[i];
+         yPositions[i] = yPositions[i] % 400;
+         
+        if(mouseX > xPositions[i] - 15 &&
+            mouseX < xPositions[i] + 15 &&
+            mouseY > yPositions[i] - 15 &&
+            mouseY < yPositions[i] + 15){
+                hearts = hearts - 1;}
+}
+    
+    
+    
+    
+    
+};
