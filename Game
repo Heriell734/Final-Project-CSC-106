@@ -1,0 +1,74 @@
+var xPositions = [];
+var yPositions = [];
+var NumAst = 9;
+var astColors = color(112, 95, 61);
+var dropSpeed = [];
+var revSpeed = [];
+var heart = 1;
+
+  for (var i = 0; i<NumAst; i++)
+  {
+     xPositions.push(round(random(0,400)));
+     yPositions.push(round(random(0,400)));
+     
+    dropSpeed.push(round(random(1,2)));
+  }
+     
+
+    
+     
+draw = function() {
+    background(0, 0, 0);
+
+    noStroke();
+
+    for (var i = 0; i < heart ; i++) {
+    image(getImage("cute/Heart"),i*50,15,55,57);
+    
+    }
+
+    for (var i = 0; i < xPositions.length; i++) {
+        fill(astColors);
+        ellipse(xPositions[i], yPositions[i], 30, 30);
+        yPositions[i] += dropSpeed[i];
+         yPositions[i] = yPositions[i] % 400;
+         
+        if(mouseX > xPositions[i] - 15 &&
+            mouseX < xPositions[i] + 15 &&
+            mouseY > yPositions[i] - 15 &&
+            mouseY < yPositions[i] + 15){
+                heart = 0;}
+                
+                
+      if (heart === 0){
+        background(0, 0, 0);
+        textSize(50);
+        fill(255, 230, 3);
+        text("GAME OVER",50,210);}
+             for (var i = 0; i<NumAst-1; i++)
+              {image(getImage("cute/Star"),50*i, 120,50,50);
+              image(getImage("cute/Star"),50*i, 205,50,50);
+              }
+        textSize(20);
+        text("Try Again?",160,316);
+        noFill();
+        stroke(255, 230, 3);
+        rect(152,285,106,50);
+            if(mouseClicked && 
+            mouseX >= 152 &&
+            mouseX <= 257 &&
+            mouseY >= 285 &&
+            mouseY <= 156){//go back to splash screen 
+            }
+        
+        }
+      
+
+    
+    };
+     
+
+    
+   
+    
+    
