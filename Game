@@ -1,15 +1,13 @@
+// Global Variables
+var currentScene = 0; // 0 = Splash screen, 1 = Instruction screen, 2 = Game screen , 3 = End Scene
 var xPositions = [];
 var yPositions = [];
-var NumAst = 9;
+var NumAst = 15;
 var astColors = color(112, 95, 61);
 var dropSpeed = [];
-var revSpeed = [];
 var heart = 1;
 
-// Global Variables
-var currentScene = 0; // 0 = Splash screen, 1 = Game screen 
-
-//bitmoji code
+//bitmoji code for Laila 
 var drawBitmoji = function (x, y, bitmojiHeight) {
     noStroke ();
     rectMode(CORNER);
@@ -51,10 +49,11 @@ var drawBitmoji = function (x, y, bitmojiHeight) {
     line (x+(bitmojiHeight/150*24), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 4
     fill (43, 33, 33); // text
     textSize(bitmojiHeight/150*30);
-    text("L", x-(bitmojiHeight/150*23), y+(bitmojiHeight/150*90)); 
-    text("G", x+(bitmojiHeight/150*23), y+(bitmojiHeight/150*90)); 
+    text("L", x-(bitmojiHeight/150*23), y+(bitmojiHeight/150*60)); 
+    text("G", x+(bitmojiHeight/150*23), y+(bitmojiHeight/150*60)); 
     };
     
+//bitmoji code for Heriell 
 var bitmojiXs = 0;
 var bitmojiYs = 0;
 var bitmojiH = 100;
@@ -168,17 +167,16 @@ var drawShirt = function(bitmojiXs,bitmojiYs,bitmojiH){
     fill(0, 0, 0);
     rect(bitmojiXs+(41/75)*bitmojiH,bitmojiYs+(149/75)*bitmojiH,(66/75)*bitmojiH,(60/75)*bitmojiH,15);//left side
     rect(bitmojiXs+(102/75)*bitmojiH,bitmojiYs+(149/75)*bitmojiH,(66/75)*bitmojiH,(60/75)*bitmojiH,15);//right side
-    fill(255, 255, 255);
+    fill(51, 52, 54);
     triangle(bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(70/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(174/75)*bitmojiH);//left arm
     triangle(bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(140/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(174/75)*bitmojiH);//right armm
     drawButtons(bitmojiXs,bitmojiYs,bitmojiH);
-    stroke(255, 255, 255);
-    fill(255, 255, 255);
+    stroke(51, 52, 54);
+    fill(51, 52, 54);
     line(bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(140/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH);// left white line to make the armpit clean on the bottom
     line(bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(70/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH);// ditto top but right
     drawH(bitmojiXs,bitmojiYs,bitmojiH);
-    drawM(bitmojiXs,bitmojiYs,bitmojiH);
-};
+    drawM(bitmojiXs,bitmojiYs,bitmojiH);};
 var drawTorso = function(bitmojiXs,bitmojiYs,bitmojiH){
     drawCollarA(bitmojiXs,bitmojiYs,bitmojiH);
     drawNeck(bitmojiXs,bitmojiYs,bitmojiH);
@@ -190,9 +188,6 @@ var drawBit = function(bitmojiXs,bitmojiYs,bitmojiH){
      drawHead(bitmojiXs,bitmojiYs,bitmojiH);
 };
 
-drawBit(bitmojiXs,bitmojiYs,bitmojiH);
-
-    
 //Paste in Khan Button class
 var Button = function(config) {
     this.x = config.x || 0;
@@ -228,11 +223,23 @@ Button.prototype.handleMouseClick = function() {
 
 // start button 
 var startButton = new Button({
-    x: 160, 
-    y:300, 
+    x: 230, 
+    y:340, 
     width:91, 
     height: 40,
     label: " START", 
+    onClick: function(){
+        currentScene = 2;
+    }
+});
+
+// How to play Button 
+var guideButton = new Button({
+    x: 100, 
+    y:340, 
+    width:120, 
+    height: 40,
+    label: "How to Play", 
     onClick: function(){
         currentScene = 1;
     }
@@ -241,31 +248,87 @@ var startButton = new Button({
 //Draws Main Screen
 var splashScene = function(){
     currentScene = 0;
-    background(105, 114, 214);
-    fill(132, 235, 240);
+    background(51, 52, 54);
+    fill(255, 255, 255);
     textSize(35);
-    text("Asteroid Game", 74, 50);  
-    fill(234, 242, 3);
+    text("ASTEROIDS", 94, 30);  
+    fill(255, 255, 255);
     textSize(15); 
-    text("Press the Start button and guides the ship around the screen, shooting bullets at asteroids. When an asteroid is hit, it splits up into smaller asteroids which fly off. When a small asteroid is hit, it disappears from the screen. If an asteroid or bullet hits the player's ship, the player loses the game. Have Fun!", 30, 100, 350, 100);
-    fill(132, 235, 240);
+    text("Press the Start button and have fun with this game", 30, 100, 350, 100);
+    fill(255, 255, 255);
     textSize(25);
-    text("Laila Ghazi & Heriell Munoz", 50, 370);
-    drawBitmoji(100, 240, 60);
+    text("Heriell Munoz & Laila Ghazi", 50, 300);
+    drawBitmoji(300, 200, 100);
+    drawBit(bitmojiXs,bitmojiYs+70,bitmojiH-20);
     startButton.draw();
+    guideButton.draw();
 };
 
-var gameScene = function() {
-    background(209, 144, 194);
+// Draws Screen with all the Instruction
+var instructionScene = function() {
+    background(51, 52, 54);
     fill(255, 255, 255);
     textSize(27);
-    text("Asteroid Game Instructions", 40, 30);
+    text("Asteroid Game Instructions", 40, 20);
+    textSize(17);
+    text("The player controls the ship around the screen that can move up and down and thrust forward. Once the ship begins moving in a direction, it will continue in that direction for a time without player intervention unless the player applies thrust in a different direction. Player have to dodge the asteroids in order to win the game. If an asteroid or bullet hits the player's ship, the game will be over. Have Fun!", 10, 65, 390, 400);
+    textSize(17);
+    text("Controls:", 150, 280);
+    text("Move forward - Spacebar", 120, 308);
+    text("Rotate - Arrow Keys", 120, 330);
 };
+
+// Draws Game Screen 
+var endScene = function(){
+     background(0, 0, 0);
+        textSize(50);
+        fill(255, 230, 3);
+        text("GAME OVER",50,165);
+             for (var k = 0; k<NumAst-1; k++)
+              {image(getImage("cute/Star"),50*k, 120,50,50);
+              image(getImage("cute/Star"),50*k, 205,50,50);
+              }
+        textSize(20);
+        text("Try Again?",160,300);
+        noFill();
+        stroke(255, 230, 3);
+    rect(154,295,103,40);
+            if (mouseClicked && 
+            mouseX >= 154 &&
+            mouseX <= 257 &&
+            mouseY >= 295 &&
+            mouseY <= 335)
+            {currentScene = 0;
+            }
+};
+var gameScene = function (){  
+    background(0, 0, 0);
+
+    noStroke();
+
+    for (var j = 0; j < xPositions.length; j++) {
+        fill(astColors);
+        ellipse(xPositions[j], yPositions[j], 30, 30);
+        yPositions[j] += dropSpeed[j];
+         yPositions[j] = yPositions[j] % 400;
+         
+        if(mouseX > xPositions[j] - 15 &&
+            mouseX < xPositions[j] + 15 &&
+            mouseY > yPositions[j] - 15 &&
+            mouseY < yPositions[j] + 15){
+                endScene();}
+                
+    }
+    
+};
+
+
 
 // mouseClicked function to move from one scene to the other
 mouseClicked = function() {
     if (currentScene === 0) {
      startButton.handleMouseClick();
+     guideButton.handleMouseClick();
     }
 };
 
@@ -274,74 +337,11 @@ draw = function() {
          splashScene();
      }
      if (currentScene === 1) {
+         instructionScene();
+     }
+     if (currentScene === 2) {
          gameScene();
      }
+     else if (currentScene === 3) {endScene();}
 };
-splashScene();
 
-  for (var i = 0; i<NumAst; i++)
-  {
-     xPositions.push(round(random(0,400)));
-     yPositions.push(round(random(0,400)));
-     
-    dropSpeed.push(round(random(1,2)));
-  }
-     
-
-    
-     
-draw = function() {
-    background(0, 0, 0);
-
-    noStroke();
-
-    for (var i = 0; i < heart ; i++) {
-    image(getImage("cute/Heart"),i*50,15,55,57);
-    
-    }
-
-    for (var i = 0; i < xPositions.length; i++) {
-        fill(astColors);
-        ellipse(xPositions[i], yPositions[i], 30, 30);
-        yPositions[i] += dropSpeed[i];
-         yPositions[i] = yPositions[i] % 400;
-         
-        if(mouseX > xPositions[i] - 15 &&
-            mouseX < xPositions[i] + 15 &&
-            mouseY > yPositions[i] - 15 &&
-            mouseY < yPositions[i] + 15){
-                heart = 0;}
-                
-                
-      if (heart === 0){
-        background(0, 0, 0);
-        textSize(50);
-        fill(255, 230, 3);
-        text("GAME OVER",50,210);}
-             for (var i = 0; i<NumAst-1; i++)
-              {image(getImage("cute/Star"),50*i, 120,50,50);
-              image(getImage("cute/Star"),50*i, 205,50,50);
-              }
-        textSize(20);
-        text("Try Again?",160,316);
-        noFill();
-        stroke(255, 230, 3);
-        rect(152,285,106,50);
-            if(mouseClicked && 
-            mouseX >= 152 &&
-            mouseX <= 257 &&
-            mouseY >= 285 &&
-            mouseY <= 156){//go back to splash screen 
-            }
-        
-        }
-      
-
-    
-    };
-     
-
-    
-   
-    
-    
