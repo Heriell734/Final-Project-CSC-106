@@ -1,0 +1,303 @@
+// Global Variables
+var currentScene = 0; // 0 = Splash screen, 1 = Instruction screen, 2 = Game screen 
+
+//bitmoji code for Laila 
+var drawBitmoji = function (x, y, bitmojiHeight) {
+    noStroke ();
+    rectMode(CORNER);
+        ellipseMode(CENTER);
+    fill (222, 154, 109); // skin tone
+    ellipse (x+(bitmojiHeight/150), y+(bitmojiHeight/150), bitmojiHeight/150*86,       bitmojiHeight/150*101); // head
+    fill (13, 12, 12); // black hair
+    ellipse (x+(bitmojiHeight/150), y-(bitmojiHeight/150*37), bitmojiHeight/150*62, bitmojiHeight/150*28); // glasses
+    ellipse (x+(bitmojiHeight/150), y-(bitmojiHeight/150*37), bitmojiHeight/150*62, bitmojiHeight/150*28); // glasses
+    stroke (0, 0, 0); // stroke for glasses 
+    fill (222, 154, 109); // skin tone under the glasses
+    ellipse (x-(bitmojiHeight/150*16), y+(bitmojiHeight/150), bitmojiHeight/150*25,     bitmojiHeight/150*19); // glasses left 
+    ellipse (x+(bitmojiHeight/150*16), y+(bitmojiHeight/150), bitmojiHeight/150*25, bitmojiHeight/150*19); // glasses right
+    line (x+(bitmojiHeight/150*4), y+(bitmojiHeight/150), x-(bitmojiHeight/150*4), y+(bitmojiHeight/150)); // glasses nose bridge
+    line (x-(bitmojiHeight/150*27), y-(bitmojiHeight/150*1), x-(bitmojiHeight/150*44), y-(bitmojiHeight/150*12)); // glasses side left
+    line (x+(bitmojiHeight/150*27), y+(bitmojiHeight/150*1), x+(bitmojiHeight/150*44), y-(bitmojiHeight/150*12)); // glasses side right
+    fill (69,24,0); // eyes color
+    ellipse (x-(bitmojiHeight/150*16), y+(bitmojiHeight/150), bitmojiHeight/150*10, bitmojiHeight/150*12); // left eye
+    ellipse(x+(bitmojiHeight/150*16), y+(bitmojiHeight/150), bitmojiHeight/150*10, bitmojiHeight/150*12); // right eye
+    fill (222, 154, 109); //fill to skin tone
+    bezier(x+(bitmojiHeight/150), y+(bitmojiHeight/150), x+(bitmojiHeight/150*21), y+(bitmojiHeight/150*22), x-(bitmojiHeight/150*8), y+(bitmojiHeight/150*20), x-(bitmojiHeight/150*4), y+(bitmojiHeight/150*15)); // nose
+    fill (255, 255, 255); // white fill for teeth
+    arc(x+(bitmojiHeight/150*3), y+(bitmojiHeight/150*25), bitmojiHeight/150*30, bitmojiHeight/150*13, bitmojiHeight/150*1, bitmojiHeight/150*181); // mouth 
+    line (x-(bitmojiHeight/150*13), y+(bitmojiHeight/150*24), x+(bitmojiHeight/150*19), y+(bitmojiHeight/150*24)); // top of mouth
+    fill (255, 0, 68); // Graduation Gown 
+    quad(x+(bitmojiHeight/150*8), y+(bitmojiHeight/150*116), x-(bitmojiHeight/150*76), y+(bitmojiHeight/150*85), x-(bitmojiHeight/150*51), y+(bitmojiHeight/150*28), x+(bitmojiHeight/150*10), y+(bitmojiHeight/150*64)); // left gown 
+    quad(x+(bitmojiHeight/150*17), y+(bitmojiHeight/150*116), x+(bitmojiHeight/150*101), y+(bitmojiHeight/150*67), x+(bitmojiHeight/150*62), y+(bitmojiHeight/150*28), x+(bitmojiHeight/150*12), y+(bitmojiHeight/150*64)); // right gown 
+    fill (255, 0, 68); //cords
+    rect(x+(bitmojiHeight/150*51), y+(bitmojiHeight/150*30), bitmojiHeight/150*17,bitmojiHeight/150*113, bitmojiHeight/150*37); // left cord
+    rect (x-(bitmojiHeight/150*52), y+(bitmojiHeight/150*33), bitmojiHeight/150*17, bitmojiHeight/150*113, bitmojiHeight/150*37); // right cord
+    fill (255, 0, 68); // cap color
+    quad (x-(bitmojiHeight/150*44), y-(bitmojiHeight/150*32), x+(bitmojiHeight/150*36), y-(bitmojiHeight/150*12), x+(bitmojiHeight/150*55), y-(bitmojiHeight/150*74), x-(bitmojiHeight/150*20), y-(bitmojiHeight/150*91)); // cap 
+    fill (255, 0, 68); // cap circle color
+    ellipse (x+(bitmojiHeight/150*16), y-(bitmojiHeight/150*53), bitmojiHeight/150*23, bitmojiHeight/150*17); // cap circle
+    fill (31, 24, 24); // cap line
+    line (x+(bitmojiHeight/150*29), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 1
+    line (x+(bitmojiHeight/150*33), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 2
+    line (x+(bitmojiHeight/150*37), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 3
+    line (x+(bitmojiHeight/150*24), y+(bitmojiHeight/150*8), x+(bitmojiHeight/150*27), y-(bitmojiHeight/150*55)); // line 4
+    fill (43, 33, 33); // text
+    textSize(bitmojiHeight/150*30);
+    text("L", x-(bitmojiHeight/150*23), y+(bitmojiHeight/150*60)); 
+    text("G", x+(bitmojiHeight/150*23), y+(bitmojiHeight/150*60)); 
+    };
+    
+//bitmoji code for Heriell 
+var bitmojiXs = 0;
+var bitmojiYs = 0;
+var bitmojiH = 100;
+var fillSkin = function(){
+  fill(232, 185, 97); //skin tone  
+};
+var drawEyes = function(bitmojiXs ,bitmojiYs,bitmojiH){
+  fill(247, 247, 247); //white of eyes
+  ellipse(bitmojiXs+(93/75)*bitmojiH,bitmojiYs+(100/75)*bitmojiH,(17/75)*bitmojiH,(10/75)*bitmojiH); //left eye shape
+  ellipse(bitmojiXs+(115/75)*bitmojiH,bitmojiYs+(100/75)*bitmojiH,(17/75)*bitmojiH,(10/75)*bitmojiH); //right eye shape
+  stroke(0, 0, 0); //border of iris
+  fill(153, 94, 0); //iris color
+  ellipse(bitmojiXs+(93/75)*bitmojiH,bitmojiYs+(100/75)*bitmojiH,(5/75)*bitmojiH,(5/75)*bitmojiH); //left iris
+  ellipse(bitmojiXs+(113/75)*bitmojiH,bitmojiYs+(100/75)*bitmojiH,(5/75)*bitmojiH,(5/75)*bitmojiH); //right iris
+};
+var drawNose = function(bitmojiXs,bitmojiYs,bitmojiH){
+    stroke(0, 0, 0);//nosestroke
+    fillSkin();
+    bezier(bitmojiXs+(104/75)*bitmojiH,bitmojiYs+(100/75)*bitmojiH,bitmojiXs+(121/75)*bitmojiH,bitmojiYs+(115/75)*bitmojiH,bitmojiXs+(94/75)*bitmojiH,bitmojiYs+(120/75)*bitmojiH,bitmojiXs+(101/75)*bitmojiH,bitmojiYs+(109/75)*bitmojiH);//shape of nose
+};
+var drawMouth = function(bitmojiXs,bitmojiYs,bitmojiH){
+        stroke(125, 72, 128);//lip color
+    fill(255,255, 255);//white for teeth
+    arc(bitmojiXs+(101/75)*bitmojiH,bitmojiYs+(119/75)*bitmojiH,(30/75)*bitmojiH,(13/75)*bitmojiH,1,180);//shape of mouth
+    line(bitmojiXs+(87/75)*bitmojiH,bitmojiYs+(119/75)*bitmojiH,bitmojiXs+(115/75)*bitmojiH,bitmojiYs+(119/75)*bitmojiH);//upper lip
+};
+var drawFacHair = function(bitmojiXs,bitmojiYs,bitmojiH){
+  noStroke();
+  fill(0, 0, 0);//black hair
+   arc(bitmojiXs+(102/75)*bitmojiH,bitmojiYs+(126/75)*bitmojiH,(11/75)*bitmojiH,(7/75)*bitmojiH,0,180);//soul patch
+  
+  stroke(0, 0, 0);
+  noFill();
+  arc(bitmojiXs+(102/75)*bitmojiH,bitmojiYs+(129/75)*bitmojiH,(48/75)*bitmojiH,(-25/75)*bitmojiH,46,137);//mustache
+  fill(0, 0, 0);
+  rect(bitmojiXs+(107/75)*bitmojiH,bitmojiYs+(91/75)*bitmojiH,(11/75)*bitmojiH,(2/75)*bitmojiH);//right eyebrow
+  rect(bitmojiXs+(87/75)*bitmojiH,bitmojiYs+(91/75)*bitmojiH,(11/75)*bitmojiH,(2/75)*bitmojiH);//left eyebrow
+  
+};
+var drawHair = function(bitmojiXs,bitmojiYs,bitmojiH){
+    stroke(0, 0, 0);
+    fill(0, 0, 0);
+    arc(bitmojiXs+(100/75)*bitmojiH,bitmojiYs+(83/75)*bitmojiH,(64/75)*bitmojiH,(-41/75)*bitmojiH,-1,180);//top of hair
+    triangle(bitmojiXs+(68/75)*bitmojiH,bitmojiYs+(81/75)*bitmojiH,bitmojiXs+(82/75)*bitmojiH,bitmojiYs+(81/75)*bitmojiH,bitmojiXs+(76/75)*bitmojiH,bitmojiYs+(103/75)*bitmojiH);//left side
+    triangle(bitmojiXs+(132/75)*bitmojiH,bitmojiYs+(84/75)*bitmojiH,bitmojiXs+(121/75)*bitmojiH,bitmojiYs+(74/75)*bitmojiH,bitmojiXs+(126/75)*bitmojiH,bitmojiYs+(103/75)*bitmojiH);//right side
+};
+var drawGlass = function(bitmojiXs,bitmojiYs,bitmojiH){
+    stroke(0,0,0);
+    noFill();
+    rect(bitmojiXs+(84/75)*bitmojiH,bitmojiYs+(95/75)*bitmojiH,(17/75)*bitmojiH,(10/75)*bitmojiH);//left square
+    rect(bitmojiXs+(106/75)*bitmojiH,bitmojiYs+(95/75)*bitmojiH,(17/75)*bitmojiH,(10/75)*bitmojiH);//right square
+    arc(bitmojiXs+(104/75)*bitmojiH,bitmojiYs+(148/75)*bitmojiH,(41/75)*bitmojiH,(-99/75)*bitmojiH,82,98);//arch
+    
+    line(bitmojiXs+(76/75)*bitmojiH,bitmojiYs+(100/75)*bitmojiH,bitmojiXs+(83/75)*bitmojiH,bitmojiYs+(100/75)*bitmojiH);//left leg
+    
+};
+var drawHead = function(bitmojiXs,bitmojiYs,bitmojiH){
+  noStroke();
+  fill(232, 185, 97); //skin tone
+  ellipse(bitmojiXs+(100/75)*bitmojiH,bitmojiYs+(100/75)*bitmojiH,(50/75)*bitmojiH,bitmojiH); //head shape
+  drawEyes(bitmojiXs,bitmojiYs,bitmojiH);
+  drawGlass(bitmojiXs,bitmojiYs,bitmojiH);
+  drawNose(bitmojiXs,bitmojiYs,bitmojiH);
+  drawMouth(bitmojiXs,bitmojiYs,bitmojiH);
+  drawFacHair(bitmojiXs,bitmojiYs,bitmojiH);
+  drawHair(bitmojiXs,bitmojiYs,bitmojiH);
+  
+};
+var drawNeck = function(bitmojiXs,bitmojiYs,bitmojiH){
+  noStroke();
+  fillSkin();
+  rect(bitmojiXs+(91/75)*bitmojiH,bitmojiYs+(139/75)*bitmojiH,(19/75)*bitmojiH,(16/75)*bitmojiH);//neck
+  fill(0, 0, 0);
+  ellipse(bitmojiXs+(100/75)*bitmojiH,bitmojiYs+(110/75)*bitmojiH,(39/75)*bitmojiH,(66/75)*bitmojiH);//goatee
+  
+};
+var drawCollarA = function(bitmojiXs,bitmojiYs,bitmojiH){
+  noStroke();
+  fill(0, 0, 0);
+  rect(bitmojiXs+(82/75)*bitmojiH,bitmojiYs+(138/75)*bitmojiH,(38/75)*bitmojiH,(11/75)*bitmojiH);//back of collar
+};
+var drawCollarB = function(bitmojiXs,bitmojiYs,bitmojiH){
+    stroke(148, 148, 148);
+    fill(0, 0, 0);
+    quad(bitmojiXs+(82/75)*bitmojiH,bitmojiYs+(138/75)*bitmojiH,bitmojiXs+(82/75)*bitmojiH,bitmojiYs+(138/75)*bitmojiH,bitmojiXs+(104/75)*bitmojiH,bitmojiYs+(155/75)*bitmojiH,bitmojiXs+(82/75)*bitmojiH,bitmojiYs+(150/75)*bitmojiH);//left collar
+    quad(bitmojiXs+(121/75)*bitmojiH,bitmojiYs+(138/75)*bitmojiH,bitmojiXs+(121/75)*bitmojiH,bitmojiYs+(138/75)*bitmojiH,bitmojiXs+(104/75)*bitmojiH,bitmojiYs+(155/75)*bitmojiH,bitmojiXs+(121/75)*bitmojiH,bitmojiYs+(149/75)*bitmojiH);//right collar
+};
+var drawButtons = function(bitmojiXs,bitmojiYs,bitmojiH){
+  noStroke();
+  fill(148, 148, 148);
+  ellipse(bitmojiXs+(108/75)*bitmojiH,bitmojiYs+(165/75)*bitmojiH,(3/75)*bitmojiH,(3/75)*bitmojiH);
+  ellipse(bitmojiXs+(108/75)*bitmojiH,bitmojiYs+(177/75)*bitmojiH,(3/75)*bitmojiH,(3/75)*bitmojiH);
+  ellipse(bitmojiXs+(108/75)*bitmojiH,bitmojiYs+(188/75)*bitmojiH,(3/75)*bitmojiH,(3/75)*bitmojiH);
+  ellipse(bitmojiXs+(108/75)*bitmojiH,bitmojiYs+(199/75)*bitmojiH,(3/75)*bitmojiH,(3/75)*bitmojiH);
+};
+var drawH = function(bitmojiXs,bitmojiYs,bitmojiH){
+    stroke(148, 148, 148);
+    fill(0,0,0);
+    rect(bitmojiXs+(65/75)*bitmojiH,bitmojiYs+(163/75)*bitmojiH,(20/75)*bitmojiH,(8/75)*bitmojiH);
+    rect(bitmojiXs+(65/75)*bitmojiH,bitmojiYs+(158/75)*bitmojiH,(8/75)*bitmojiH,(20/75)*bitmojiH);
+    rect(bitmojiXs+(77/75)*bitmojiH,bitmojiYs+(158/75)*bitmojiH,(8/75)*bitmojiH,(20/75)*bitmojiH);
+};
+var drawM = function(bitmojiXs,bitmojiYs,bitmojiH){
+    quad(bitmojiXs+(69/75)*bitmojiH,bitmojiYs+(197/75)*bitmojiH,bitmojiXs+(69/75)*bitmojiH,bitmojiYs+(207/75)*bitmojiH,bitmojiXs+(77/75)*bitmojiH,bitmojiYs+(191/75)*bitmojiH,bitmojiXs+(74/75)*bitmojiH,bitmojiYs+(176/75)*bitmojiH);
+    triangle(bitmojiXs+(85/75)*bitmojiH,bitmojiYs+(201/75)*bitmojiH,bitmojiXs+(77/75)*bitmojiH,bitmojiYs+(191/75)*bitmojiH,bitmojiXs+(74/75)*bitmojiH,bitmojiYs+(176/75)*bitmojiH);
+    quad(bitmojiXs+(100/75)*bitmojiH,bitmojiYs+(196/75)*bitmojiH,bitmojiXs+(101/75)*bitmojiH,bitmojiYs+(207/75)*bitmojiH,bitmojiXs+(92/75)*bitmojiH,bitmojiYs+(191/75)*bitmojiH,bitmojiXs+(91/75)*bitmojiH,bitmojiYs+(178/75)*bitmojiH);
+    triangle(bitmojiXs+(92/75)*bitmojiH,bitmojiYs+(191/75)*bitmojiH,bitmojiXs+(85/75)*bitmojiH,bitmojiYs+(201/75)*bitmojiH,bitmojiXs+(91/75)*bitmojiH,bitmojiYs+(178/75)*bitmojiH);
+};
+var drawShirt = function(bitmojiXs,bitmojiYs,bitmojiH){
+    stroke(148, 148, 148);
+    fill(0, 0, 0);
+    rect(bitmojiXs+(41/75)*bitmojiH,bitmojiYs+(149/75)*bitmojiH,(66/75)*bitmojiH,(60/75)*bitmojiH,15);//left side
+    rect(bitmojiXs+(102/75)*bitmojiH,bitmojiYs+(149/75)*bitmojiH,(66/75)*bitmojiH,(60/75)*bitmojiH,15);//right side
+    fill(255, 255, 255);
+    triangle(bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(70/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(174/75)*bitmojiH);//left arm
+    triangle(bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(140/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(174/75)*bitmojiH);//right armm
+    drawButtons(bitmojiXs,bitmojiYs,bitmojiH);
+    stroke(255, 255, 255);
+    fill(255, 255, 255);
+    line(bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(140/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH);// left white line to make the armpit clean on the bottom
+    line(bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(70/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH);// ditto top but right
+    drawH(bitmojiXs,bitmojiYs,bitmojiH);
+    drawM(bitmojiXs,bitmojiYs,bitmojiH);
+};
+var drawTorso = function(bitmojiXs,bitmojiYs,bitmojiH){
+    drawCollarA(bitmojiXs,bitmojiYs,bitmojiH);
+    drawNeck(bitmojiXs,bitmojiYs,bitmojiH);
+    drawShirt(bitmojiXs,bitmojiYs,bitmojiH);
+    drawCollarB(bitmojiXs,bitmojiYs,bitmojiH);
+};
+var drawBit = function(bitmojiXs,bitmojiYs,bitmojiH){
+     drawTorso(bitmojiXs,bitmojiYs,bitmojiH);
+     drawHead(bitmojiXs,bitmojiYs,bitmojiH);
+};
+
+//Paste in Khan Button class
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick ||
+function() {};
+};
+
+Button.prototype.draw = function() {
+    fill(234, 242, 3);
+    rect(this.x, this.y, this.width, this.height, 5);
+    fill(0, 0, 0);
+    textSize(19);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+10, this.y+this.height/4);
+};
+
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+
+// start button 
+var startButton = new Button({
+    x: 230, 
+    y:340, 
+    width:91, 
+    height: 40,
+    label: " START", 
+    onClick: function(){
+        currentScene = 2;
+    }
+});
+
+// How to play Button 
+var guideButton = new Button({
+    x: 100, 
+    y:340, 
+    width:120, 
+    height: 40,
+    label: "How to Play", 
+    onClick: function(){
+        currentScene = 1;
+    }
+});
+
+//Draws Main Screen
+var splashScene = function(){
+    currentScene = 0;
+    background(51, 52, 54);
+    fill(255, 255, 255);
+    textSize(35);
+    text("ASTEROIDS", 94, 30);  
+    fill(255, 255, 255);
+    textSize(15); 
+    text("Press the Start button and have fun with this game", 30, 100, 350, 100);
+    fill(255, 255, 255);
+    textSize(25);
+    text("Heriell Munoz & Laila Ghazi", 50, 300);
+    drawBitmoji(300, 200, 100);
+    drawBit(bitmojiXs,bitmojiYs+70,bitmojiH-20);
+    startButton.draw();
+    guideButton.draw();
+};
+
+// Draws Screen with all the Instruction
+var instructionScene = function() {
+    background(51, 52, 54);
+    fill(255, 255, 255);
+    textSize(27);
+    text("Asteroid Game Instructions", 40, 20);
+    textSize(17);
+    text("The player controls the ship around the screen that can move up and down and thrust forward. Once the ship begins moving in a direction, it will continue in that direction for a time without player intervention unless the player applies thrust in a different direction. Player have to dodge the asteroids in order to win the game. If an asteroid or bullet hits the player's ship, the game will be over. Have Fun!", 10, 65, 390, 400);
+    textSize(17);
+    text("Controls:", 150, 280);
+    text("Move forward - Spacebar", 120, 308);
+    text("Rotate - Arrow Keys", 120, 330);
+};
+
+// Draws Game Screen 
+var gameScene = function() {
+    background(51, 52, 54);
+    fill(255, 255, 255);
+    textSize(30);
+    text("Game", 10, 50);
+};
+
+// mouseClicked function to move from one scene to the other
+mouseClicked = function() {
+    if (currentScene === 0) {
+     startButton.handleMouseClick();
+     guideButton.handleMouseClick();
+    }
+};
+
+draw = function() {
+     if (currentScene === 0) {
+         splashScene();
+     }
+      if (currentScene === 1) {
+         instructionScene();
+     }
+     if (currentScene === 2) {
+         gameScene();
+     }
+};
+splashScene();
