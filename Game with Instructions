@@ -240,6 +240,18 @@ var guideButton = new Button({
     }
 });
 
+// Back to main screen button 
+var backButton = new Button({
+    x: 300, 
+    y:340, 
+    width:85, 
+    height: 40,
+    label: " BACK", 
+    onClick: function(){
+        currentScene = 0;
+    }
+});
+
 //Draws Main Screen
 var splashScene = function(){
     currentScene = 0;
@@ -271,6 +283,7 @@ var instructionScene = function() {
     text("Controls:", 150, 280);
     text("Move forward - Spacebar", 120, 308);
     text("Rotate - Arrow Keys", 120, 330);
+    backButton.draw();
 };
 
 // Draws Game Screen 
@@ -286,6 +299,9 @@ mouseClicked = function() {
     if (currentScene === 0) {
      startButton.handleMouseClick();
      guideButton.handleMouseClick();
+    }
+    if (currentScene === 1) {
+        backButton.handleMouseClick();
     }
 };
 
