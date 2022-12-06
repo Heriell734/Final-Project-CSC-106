@@ -160,11 +160,11 @@ var drawShirt = function(bitmojiXs,bitmojiYs,bitmojiH){
     fill(0, 0, 0);
     rect(bitmojiXs+(41/75)*bitmojiH,bitmojiYs+(149/75)*bitmojiH,(66/75)*bitmojiH,(60/75)*bitmojiH,15);//left side
     rect(bitmojiXs+(102/75)*bitmojiH,bitmojiYs+(149/75)*bitmojiH,(66/75)*bitmojiH,(60/75)*bitmojiH,15);//right side
-    fill(255, 255, 255);
+    fill(105, 114, 214);
     triangle(bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(70/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(174/75)*bitmojiH);//left arm
     triangle(bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(140/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(174/75)*bitmojiH);//right armm
     drawButtons(bitmojiXs,bitmojiYs,bitmojiH);
-    stroke(255, 255, 255);
+    stroke(105, 114, 214);
     fill(255, 255, 255);
     line(bitmojiXs+(150/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(140/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH);// left white line to make the armpit clean on the bottom
     line(bitmojiXs+(60/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH,bitmojiXs+(70/75)*bitmojiH,bitmojiYs+(210/75)*bitmojiH);// ditto top but right
@@ -244,7 +244,9 @@ var splashScene = function(){
     textSize(25);
     text("Laila Ghazi & Heriell Munoz", 50, 370);
     drawBitmoji(100, 240, 60);
+    drawBit(205, 156, 48);
     startButton.draw();
+};
 };
 
 var gameScene = function() {
