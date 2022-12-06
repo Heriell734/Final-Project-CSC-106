@@ -245,6 +245,18 @@ var guideButton = new Button({
     }
 });
 
+// Back to main screen button 
+var backButton = new Button({
+    x: 300, 
+    y:340, 
+    width:85, 
+    height: 40,
+    label: " BACK", 
+    onClick: function(){
+        currentScene = 0;
+    }
+});
+
 //Draws Main Screen
 var splashScene = function(){
     currentScene = 0;
